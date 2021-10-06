@@ -1,0 +1,14 @@
+.navbar-brand {
+    font-family: 'Black Ops One', cursive;
+    font-size: 20px;
+}
+
+.fa-campground {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.navbar-collapse {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+}

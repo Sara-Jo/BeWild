@@ -1,0 +1,29 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1563299796-17596ed6b017?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80");
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+
+.navbar-brand {
+    font-family: 'Black Ops One', cursive;
+    font-size: 20px;
+}
+
+.fa-campground {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.navbar-collapse {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+}
+
+.cover-container {
+  max-width: 60vw;
+}
+
