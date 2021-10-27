@@ -1,4 +1,5 @@
-<%- include('../layout/boilerplate')%>
+<% layout('layout/boilerplate')%>
+
 <link rel="stylesheet" href="/stylesheets/campgrounds.css">
 
 <button type="button" class="btn btn-light mt-3 new_btn" onclick="location.href='/campgrounds/new'">Add My Own Camping Site</button>
@@ -6,7 +7,7 @@
 
 <div class="card_container">
     <% for (let campground of campgrounds) { %>
-        <div class="card text-white bg-dark mb-3 col-3">
+        <div class="card text-white bg-dark mb-5 col-3">
             <img src="https://source.unsplash.com/collection/483251" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title"><%= campground.title %></h5>
