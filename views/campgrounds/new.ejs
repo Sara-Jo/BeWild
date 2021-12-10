@@ -1,7 +1,7 @@
 <% layout('layout/boilerplate')%>
 
 <div class="col-md-6 offset-md-3">
-    <form action="/campgrounds" method="post">
+    <form action="/campgrounds" method="post" enctype="multipart/form-data">
 
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
@@ -14,8 +14,13 @@
         </div>
 
         <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="text" name="campground[image]" class="form-control" id="location">
+            <div class="form-file custom-file">
+                <label for="image" class="form-file-label">
+                    <span class="form-file-text custom-file-label">Choose image(s)...</span>
+                </label>
+                <input type="file" class="form-file-input" name="image" id="image" multiple>
+                
+            </div>
         </div>
 
         <div class="mb-3">

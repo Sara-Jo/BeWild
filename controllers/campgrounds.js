@@ -1,4 +1,5 @@
 const Campground = require("../models/campground");
+const { cloudinary } = require("../cloudinary");
 
 // Read
 module.exports.index = async (req, res) => {
@@ -8,15 +9,6 @@ module.exports.index = async (req, res) => {
 
 module.exports.renderNewForm = (req, res) => {
     res.render("campgrounds/new");
-}
-
-// Create
-module.exports.createCampground = async(req, res) => {
-    const campground = new Campground(req.body.campground);
-    campground.author = req.user._id;       // Store the author DB when a new campground is created
-    await campground.save();
-    req.flash("success", "Successfully made a new campground!");
-    res.redirect(`/campgrounds/${campground._id}`);
 }
 
 module.exports.showCampground = async(req, res) => {
@@ -43,10 +35,30 @@ module.exports.renderEditFrom = async(req, res) => {
     res.render("campgrounds/edit", { campground });
 }
 
+// Create
+module.exports.createCampground = async(req, res) => {
+    const campground = new Campground(req.body.campground);
+    // Store the images and author data when a new campground is created
+    campground.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    campground.author = req.user._id;
+    await campground.save();
+    req.flash("success", "Successfully made a new campground!");
+    res.redirect(`/campgrounds/${campground._id}`);
+}
+
 // Update
 module.exports.updateCampground = async(req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const campground = await Campground.findByIdAndUpdate(id, {...req.body.campground});
+    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    campground.images.push(...imgs);
+    await campground.save();
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages){
+            await cloudinary.uploader.destroy(filename);
+        }
+        await campground.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages }}}});
+    }
     req.flash("success", "Successfully updated campground!");
     res.redirect(`/campgrounds/${campground._id}`);
 }
