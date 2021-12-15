@@ -18,6 +18,20 @@ const seedDB = async () => {
             author: "61836dea7f50b4d7bb57311e",      // set the author of existing campgrounds to an user id
             title: `${sample(descriptors)} ${sample(places)}`,
             price: randomPrice,
+            geometry: {
+                type: "Point",
+                coordinates: [-113.1331, 47.0202]
+            },
+            images: [
+                {
+                    url: "https://res.cloudinary.com/dzacyhljo/image/upload/v1639117397/BeWild/mire98z0ziagajp7pyz8.jpg",
+                    filename: "BeWild/mire98z0ziagajp7pyz8"
+                },
+                {
+                    url: "https://res.cloudinary.com/dzacyhljo/image/upload/v1639117396/BeWild/eytozbpmqybzwjrt26yo.jpg",
+                    filename: "BeWild/eytozbpmqybzwjrt26yo"
+                }
+            ],
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean facilisis eros ut finibus dignissim. Mauris vulputate elit eu nisl molestie commodo."
         });
