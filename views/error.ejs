@@ -2,7 +2,10 @@
 <div class="row">
     <div class="col-6 offset-3">
         <div class="alert alert-danger" role="alert">
+            <!-- after deploying, do not show err message to users -->
+            <% if (process.env.NODE_ENV !== "production") { %>
             <h4 class="alert-heading"><%=err.message%></h4>
+            <% } %>
         </div>
     </div>
 </div>
